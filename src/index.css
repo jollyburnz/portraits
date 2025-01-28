@@ -120,11 +120,11 @@ body {
 
     input[type="text"] {
       padding: 10px;
-      margin-right: 10px;
+      margin-bottom: 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 1rem;
-      width: 70%;
+      width: 90%;
       transition: color 0.3s, background-color 0.3s;
     }
 
