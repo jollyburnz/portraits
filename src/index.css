@@ -7,6 +7,15 @@ body {
       min-height: 100vh;
       margin: 0;
       padding-top: 5vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.light-mode {
+      background-color: #f0f0f0;
+      color: black;
+    }
+
+    body.dark-mode {
       background-color: black;
       color: white;
     }
@@ -27,7 +36,15 @@ body {
       border-radius: 4px;
       font-size: 1rem;
       width: 70%;
+      transition: color 0.3s;
+    }
+
+    body.light-mode input[type="text"] {
       color: black;
+    }
+
+    body.dark-mode input[type="text"] {
+      color: white;
     }
 
     button {
@@ -58,14 +75,30 @@ body {
 
     .card-container h2 {
       margin-top: 0;
-      color: white;
       font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    body.light-mode .card-container h2 {
+      color: black;
+    }
+
+    body.dark-mode .card-container h2 {
+      color: white;
     }
 
     .card-container p {
-      color: white;
       line-height: 1.6;
       font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    body.light-mode .card-container p {
+      color: black;
+    }
+
+    body.dark-mode .card-container p {
+      color: white;
     }
 
     .card-flip-container {
@@ -112,6 +145,23 @@ body {
     .card-face img {
       max-width: 100%;
       max-height: 100%;
+    }
+
+    .theme-switch {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+    }
+
+    .theme-switch:hover {
+      background-color: #357ae8;
     }
 
     @media (min-width: 768px) {
