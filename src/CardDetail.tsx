@@ -22,6 +22,19 @@ import React, { useState, useEffect, useRef } from 'react';
       const animationRef = useRef<anime.AnimeInstance | null>(null);
       const cardFlipRef = useRef<HTMLDivElement>(null);
       const [isFlipped, setIsFlipped] = useState(false);
+      const [theme, setTheme] = useState<'light' | 'dark'>(
+        localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
+      );
+
+      useEffect(() => {
+        document.body.classList.remove('light-mode', 'dark-mode');
+        document.body.classList.add(`${theme}-mode`);
+        localStorage.setItem('theme', theme);
+      }, [theme]);
+
+      const toggleTheme = () => {
+        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+      };
 
       useEffect(() => {
         const fetchCard = async () => {
@@ -75,6 +88,9 @@ import React, { useState, useEffect, useRef } from 'react';
               if (svgContainerRef.current) {
                 svgContainerRef.current.innerHTML = svgText;
                 const paths = svgContainerRef.current.querySelectorAll('path');
+                paths.forEach(path => {
+                  path.style.stroke = theme === 'dark' ? 'white' : 'black';
+                });
                 animationRef.current = anime({
                   targets: paths,
                   strokeDashoffset: [anime.setDashoffset, 0],
@@ -97,7 +113,7 @@ import React, { useState, useEffect, useRef } from 'react';
             animationRef.current = null;
           }
         };
-      }, [card]);
+      }, [card, theme]);
 
       const handleShare = async () => {
         if (navigator.share) {
@@ -131,6 +147,9 @@ import React, { useState, useEffect, useRef } from 'react';
       return (
         <div>
           <button onClick={handleBack}>Back</button>
+          <button className="theme-switch" onClick={toggleTheme}>
+            {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+          </button>
           {error && <p style={{ color: 'red' }}>{error}</p>}
           {card && (
             <div className="card-container">
