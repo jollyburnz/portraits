@@ -52,6 +52,27 @@ import React, { useState, useEffect } from 'react';
         fetchCard();
       }, [cardNumber, navigate]);
 
+      const handleShare = async () => {
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: `Card ${cardNumber}`,
+              url: window.location.href,
+            });
+          } catch (error) {
+            console.error('Error sharing:', error);
+          }
+        } else {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            alert('URL copied to clipboard!');
+          } catch (err) {
+            console.error('Failed to copy URL: ', err);
+            alert('Failed to copy URL to clipboard');
+          }
+        }
+      };
+
       return (
         <div>
           {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -68,6 +89,7 @@ import React, { useState, useEffect } from 'react';
                   <img src={card.photoPath} alt="Card Photo" style={{maxWidth: '100%', maxHeight: '100%'}}/>
                 </div>
               )}
+              <button onClick={handleShare}>Share</button>
             </div>
           )}
         </div>
