@@ -25,11 +25,6 @@ body {
       background-color: transparent;
       color: white;
       padding: 10px 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
       box-sizing: border-box;
       transition: background-color 0.3s;
       display: flex;
@@ -84,7 +79,7 @@ body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 60px;
+      justify-content: center;
       box-sizing: border-box;
     }
 
@@ -93,10 +88,6 @@ body {
       color: white;
       text-align: center;
       padding: 10px 20px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
       box-sizing: border-box;
       transition: background-color 0.3s;
       display: flex;
@@ -172,7 +163,6 @@ body {
     }
 
     .card-container {
-      margin-top: 20px;
       padding: 20px;
       border-radius: 8px;
       background-color: transparent;
