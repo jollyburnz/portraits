@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
     import { useParams, useNavigate } from 'react-router-dom';
     import { createClient } from '@supabase/supabase-js';
+    import anime from 'animejs';
 
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
     const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -17,6 +18,8 @@ import React, { useState, useEffect } from 'react';
       const [card, setCard] = useState<any>(null);
       const [error, setError] = useState<string | null>(null);
       const navigate = useNavigate();
+      const svgContainerRef = useRef<HTMLDivElement>(null);
+      const animationRef = useRef<anime.AnimeInstance | null>(null);
 
       useEffect(() => {
         const fetchCard = async () => {
@@ -58,6 +61,42 @@ import React, { useState, useEffect } from 'react';
         fetchCard();
       }, [cardNumber, navigate]);
 
+      useEffect(() => {
+        if (card && card.svgPath && svgContainerRef.current) {
+          const fetchSVG = async () => {
+            try {
+              const response = await fetch(card.svgPath);
+              if (!response.ok) {
+                throw new Error(`Failed to fetch SVG: ${response.status} ${response.statusText}`);
+              }
+              const svgText = await response.text();
+              if (svgContainerRef.current) {
+                svgContainerRef.current.innerHTML = svgText;
+                const paths = svgContainerRef.current.querySelectorAll('path');
+                animationRef.current = anime({
+                  targets: paths,
+                  strokeDashoffset: [anime.setDashoffset, 0],
+                  easing: 'easeInOutSine',
+                  duration: 1500,
+                  delay: anime.stagger(100),
+                  loop: true,
+                  direction: 'alternate',
+                });
+              }
+            } catch (err) {
+              console.error('Error fetching or animating SVG:', err);
+            }
+          };
+          fetchSVG();
+        }
+        return () => {
+          if (animationRef.current) {
+            animationRef.current.pause();
+            animationRef.current = null;
+          }
+        };
+      }, [card]);
+
       const handleShare = async () => {
         if (navigator.share) {
           try {
@@ -91,8 +130,7 @@ import React, { useState, useEffect } from 'react';
             <div className="card-container">
               <h2>Card Number: {card.cardNumber}</h2>
               {card.svgPath && (
-                <div style={{width: '100px', height: '100px'}}>
-                  <img src={card.svgPath} alt="Card SVG" style={{maxWidth: '100%', maxHeight: '100%'}}/>
+                <div style={{width: '100px', height: '100px'}} ref={svgContainerRef}>
                 </div>
               )}
               {card.photoPath && (
