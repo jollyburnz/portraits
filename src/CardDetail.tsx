@@ -89,7 +89,7 @@ import React, { useState, useEffect, useRef } from 'react';
                 svgContainerRef.current.innerHTML = svgText;
                 const paths = svgContainerRef.current.querySelectorAll('path');
                 paths.forEach(path => {
-                  path.style.stroke = theme === 'dark' ? 'white' : 'black';
+                  path.style.stroke = theme === 'dark' ? '#1DA1F2' : 'black';
                 });
                 animationRef.current = anime({
                   targets: paths,
@@ -153,7 +153,6 @@ import React, { useState, useEffect, useRef } from 'react';
           {error && <p style={{ color: 'red' }}>{error}</p>}
           {card && (
             <div className="card-container">
-              <h2>Card Number: {card.cardNumber}</h2>
               <div className={`card-flip-container ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip} ref={cardFlipRef}>
                 <div className="card-face front">
                   <div ref={svgContainerRef}></div>
