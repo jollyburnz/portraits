@@ -132,7 +132,7 @@ import React, { useState, useEffect, useRef } from 'react';
         if (navigator.share) {
           try {
             await navigator.share({
-              title: `Card ${cardNumber}`,
+              title: `Portrait ${cardNumber}`,
               url: window.location.href,
             });
           } catch (error) {
