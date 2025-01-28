@@ -16,7 +16,7 @@ import React, { useState } from 'react';
           <div className="search-container">
             <input
               type="text"
-              placeholder="Enter Card Number"
+              placeholder="Enter Portrait Number"
               value={cardNumber}
               onChange={(e) => setCardNumber(e.target.value)}
             />
