@@ -20,6 +20,8 @@ import React, { useState, useEffect, useRef } from 'react';
       const navigate = useNavigate();
       const svgContainerRef = useRef<HTMLDivElement>(null);
       const animationRef = useRef<anime.AnimeInstance | null>(null);
+      const cardFlipRef = useRef<HTMLDivElement>(null);
+      const [isFlipped, setIsFlipped] = useState(false);
 
       useEffect(() => {
         const fetchCard = async () => {
@@ -122,6 +124,10 @@ import React, { useState, useEffect, useRef } from 'react';
         navigate('/');
       };
 
+      const handleFlip = () => {
+        setIsFlipped(!isFlipped);
+      };
+
       return (
         <div>
           <button onClick={handleBack}>Back</button>
@@ -129,15 +135,21 @@ import React, { useState, useEffect, useRef } from 'react';
           {card && (
             <div className="card-container">
               <h2>Card Number: {card.cardNumber}</h2>
-              {card.svgPath && (
-                <div style={{width: '100px', height: '100px'}} ref={svgContainerRef}>
+              <div className={`card-flip-container ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip} ref={cardFlipRef}>
+                <div className="card-face front">
+                  {card.svgPath && (
+                    <div style={{width: '100px', height: '100px'}} ref={svgContainerRef}>
+                    </div>
+                  )}
                 </div>
-              )}
-              {card.photoPath && (
-                <div style={{width: '100px', height: '100px'}}>
-                  <img src={card.photoPath} alt="Card Photo" style={{maxWidth: '100%', maxHeight: '100%'}}/>
+                <div className="card-face back">
+                  {card.photoPath && (
+                    <div style={{width: '100px', height: '100px'}}>
+                      <img src={card.photoPath} alt="Card Photo" style={{maxWidth: '100%', maxHeight: '100%'}}/>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
               <button onClick={handleShare}>Share</button>
             </div>
           )}
