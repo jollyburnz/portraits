@@ -25,6 +25,7 @@ import React, { useState, useEffect, useRef } from 'react';
       const [theme, setTheme] = useState<'light' | 'dark'>(
         localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
       );
+      const [cardSize, setCardSize] = useState({ width: 150, height: 150 });
 
       useEffect(() => {
         document.body.classList.remove('light-mode', 'dark-mode');
@@ -35,6 +36,18 @@ import React, { useState, useEffect, useRef } from 'react';
       const toggleTheme = () => {
         setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
       };
+
+      useEffect(() => {
+        const handleResize = () => {
+          const maxWidth = Math.min(window.innerWidth * 0.9, 600);
+          const size = Math.min(maxWidth, 300);
+          setCardSize({ width: size, height: size });
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
 
       useEffect(() => {
         const fetchCard = async () => {
@@ -153,7 +166,12 @@ import React, { useState, useEffect, useRef } from 'react';
           {error && <p style={{ color: 'red' }}>{error}</p>}
           {card && (
             <div className="card-container">
-              <div className={`card-flip-container ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip} ref={cardFlipRef}>
+              <div
+                className={`card-flip-container ${isFlipped ? 'flipped' : ''}`}
+                onClick={handleFlip}
+                ref={cardFlipRef}
+                style={{ width: cardSize.width, height: cardSize.height }}
+              >
                 <div className="card-face front">
                   <div ref={svgContainerRef}></div>
                 </div>
