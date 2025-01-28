@@ -28,6 +28,12 @@ import React, { useState, useEffect } from 'react';
             return;
           }
 
+          if (!cardNumber) {
+            setError('Card number is missing in the URL.');
+            navigate('/no-results');
+            return;
+          }
+
           try {
             const { data, error } = await supabase
               .from('cards')
