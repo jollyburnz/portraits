@@ -12,7 +12,7 @@ import React from 'react';
         <div>
           <button onClick={handleBack}>Back</button>
           <h2>No Results Found</h2>
-          <p>Sorry, we couldn't find a card with that number.</p>
+          <p>Sorry, we couldn't find a portrait with that number.</p>
         </div>
       );
     }
