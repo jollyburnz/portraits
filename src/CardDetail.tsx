@@ -137,17 +137,14 @@ import React, { useState, useEffect, useRef } from 'react';
               <h2>Card Number: {card.cardNumber}</h2>
               <div className={`card-flip-container ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip} ref={cardFlipRef}>
                 <div className="card-face front">
-                  {card.svgPath && (
-                    <div style={{width: '100px', height: '100px'}} ref={svgContainerRef}>
-                    </div>
-                  )}
+                  <div ref={svgContainerRef}></div>
                 </div>
                 <div className="card-face back">
-                  {card.photoPath && (
-                    <div style={{width: '100px', height: '100px'}}>
-                      <img src={card.photoPath} alt="Card Photo" style={{maxWidth: '100%', maxHeight: '100%'}}/>
-                    </div>
-                  )}
+                  <div>
+                    {card.photoPath && (
+                      <img src={card.photoPath} alt="Card Photo" />
+                    )}
+                  </div>
                 </div>
               </div>
               <button onClick={handleShare}>Share</button>
