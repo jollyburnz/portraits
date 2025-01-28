@@ -79,8 +79,13 @@ import React, { useState, useEffect } from 'react';
         }
       };
 
+      const handleBack = () => {
+        navigate('/');
+      };
+
       return (
         <div>
+          <button onClick={handleBack}>Back</button>
           {error && <p style={{ color: 'red' }}>{error}</p>}
           {card && (
             <div className="card-container">
