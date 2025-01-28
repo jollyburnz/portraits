@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
     import { useNavigate } from 'react-router-dom';
 
-    function Home() {
+    interface HomeProps {
+      theme: 'light' | 'dark';
+      toggleTheme: () => void;
+    }
+
+    function Home({ theme, toggleTheme }: HomeProps) {
       const [cardNumber, setCardNumber] = useState('');
       const navigate = useNavigate();
 

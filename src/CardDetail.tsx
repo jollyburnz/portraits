@@ -13,7 +13,12 @@ import React, { useState, useEffect, useRef } from 'react';
       supabase = createClient(supabaseUrl, supabaseKey);
     }
 
-    function CardDetail() {
+    interface CardDetailProps {
+      theme: 'light' | 'dark';
+      toggleTheme: () => void;
+    }
+
+    function CardDetail({ theme, toggleTheme }: CardDetailProps) {
       const { cardNumber } = useParams();
       const [card, setCard] = useState<any>(null);
       const [error, setError] = useState<string | null>(null);
@@ -22,20 +27,7 @@ import React, { useState, useEffect, useRef } from 'react';
       const animationRef = useRef<anime.AnimeInstance | null>(null);
       const cardFlipRef = useRef<HTMLDivElement>(null);
       const [isFlipped, setIsFlipped] = useState(false);
-      const [theme, setTheme] = useState<'light' | 'dark'>(
-        localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
-      );
       const [cardSize, setCardSize] = useState({ width: 150, height: 150 });
-
-      useEffect(() => {
-        document.body.classList.remove('light-mode', 'dark-mode');
-        document.body.classList.add(`${theme}-mode`);
-        localStorage.setItem('theme', theme);
-      }, [theme]);
-
-      const toggleTheme = () => {
-        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-      };
 
       useEffect(() => {
         const handleResize = () => {
@@ -128,41 +120,12 @@ import React, { useState, useEffect, useRef } from 'react';
         };
       }, [card, theme]);
 
-      const handleShare = async () => {
-        if (navigator.share) {
-          try {
-            await navigator.share({
-              title: `Portrait ${cardNumber}`,
-              url: window.location.href,
-            });
-          } catch (error) {
-            console.error('Error sharing:', error);
-          }
-        } else {
-          try {
-            await navigator.clipboard.writeText(window.location.href);
-            alert('URL copied to clipboard!');
-          } catch (err) {
-            console.error('Failed to copy URL: ', err);
-            alert('Failed to copy URL to clipboard');
-          }
-        }
-      };
-
-      const handleBack = () => {
-        navigate('/');
-      };
-
       const handleFlip = () => {
         setIsFlipped(!isFlipped);
       };
 
       return (
         <div>
-          <button onClick={handleBack}>Back</button>
-          <button className="theme-switch" onClick={toggleTheme}>
-            {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
-          </button>
           {error && <p style={{ color: 'red' }}>{error}</p>}
           {card && (
             <div className="card-container">
@@ -183,7 +146,6 @@ import React, { useState, useEffect, useRef } from 'react';
                   </div>
                 </div>
               </div>
-              <button onClick={handleShare}>Share</button>
             </div>
           )}
         </div>

@@ -1,12 +1,7 @@
 body {
       font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
       margin: 0;
-      padding-top: 5vh;
+      padding: 0;
       transition: background-color 0.3s, color 0.3s;
     }
 
@@ -18,6 +13,110 @@ body {
     body.dark-mode {
       background-color: black;
       color: white;
+    }
+
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .app-header {
+      background-color: transparent;
+      color: white;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      box-sizing: border-box;
+      transition: background-color 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    body.light-mode .app-header {
+      color: black;
+    }
+
+    body.dark-mode .app-header {
+      color: white;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .back-button,
+    .share-button {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+
+    body.dark-mode .back-button,
+    body.dark-mode .share-button {
+      background-color: #333;
+    }
+
+    .back-button:hover,
+    .share-button:hover {
+      background-color: #357ae8;
+    }
+
+    body.dark-mode .back-button:hover,
+    body.dark-mode .share-button:hover {
+      background-color: #555;
+    }
+
+    .app-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 60px;
+      box-sizing: border-box;
+    }
+
+    .app-footer {
+      background-color: transparent;
+      color: white;
+      text-align: center;
+      padding: 10px 20px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      box-sizing: border-box;
+      transition: background-color 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    body.light-mode .app-footer {
+      color: black;
+    }
+
+    body.dark-mode .app-footer {
+      color: white;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
     }
 
     .search-container {
@@ -156,9 +255,6 @@ body {
     }
 
     .theme-switch {
-      position: absolute;
-      top: 10px;
-      right: 10px;
       background-color: #4285f4;
       color: white;
       border: none;
