@@ -1,282 +1,282 @@
 body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      transition: background-color 0.3s, color 0.3s;
-    }
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
 
-    body.light-mode {
-      background-color: #f0f0f0;
-      color: black;
-    }
+body.light-mode {
+  background-color: #f0f0f0;
+  color: black;
+}
 
-    body.dark-mode {
-      background-color: black;
-      color: white;
-    }
+body.dark-mode {
+  background-color: black;
+  color: white;
+}
 
-    .app-container {
-      display: flex;
-      flex-direction: column;
-    }
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
 
-    .app-header {
-      background-color: transparent;
-      color: white;
-      padding: 10px 20px;
-      box-sizing: border-box;
-      transition: background-color 0.3s;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.app-header {
+  background-color: transparent;
+  color: white;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    body.light-mode .app-header {
-      color: black;
-    }
+body.light-mode .app-header {
+  color: black;
+}
 
-    body.dark-mode .app-header {
-      color: white;
-    }
+body.dark-mode .app-header {
+  color: white;
+}
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 
-    .back-button,
-    .share-button {
-      background-color: #4285f4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      padding: 8px 12px;
-      font-size: 0.9rem;
-      transition: background-color 0.3s;
-    }
+.back-button,
+.share-button {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
 
-    body.dark-mode .back-button,
-    body.dark-mode .share-button {
-      background-color: #333;
-    }
+body.dark-mode .back-button,
+body.dark-mode .share-button {
+  background-color: #333;
+}
 
-    .back-button:hover,
-    .share-button:hover {
-      background-color: #357ae8;
-    }
+.back-button:hover,
+.share-button:hover {
+  background-color: #357ae8;
+}
 
-    body.dark-mode .back-button:hover,
-    body.dark-mode .share-button:hover {
-      background-color: #555;
-    }
+body.dark-mode .back-button:hover,
+body.dark-mode .share-button:hover {
+  background-color: #555;
+}
 
-    .app-main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-    }
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
 
-    .app-footer {
-      background-color: transparent;
-      color: white;
-      text-align: center;
-      padding: 10px 20px;
-      box-sizing: border-box;
-      transition: background-color 0.3s;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.app-footer {
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    body.light-mode .app-footer {
-      color: black;
-    }
+body.light-mode .app-footer {
+  color: black;
+}
 
-    body.dark-mode .app-footer {
-      color: white;
-    }
+body.dark-mode .app-footer {
+  color: white;
+}
 
-    .footer-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 
-    .search-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 20px;
-      width: 90%;
-      max-width: 600px;
-    }
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 600px;
+}
 
-    input[type="text"] {
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-      width: 90%;
-      transition: color 0.3s, background-color 0.3s;
-    }
+input[type="text"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 90%;
+  transition: color 0.3s, background-color 0.3s;
+}
 
-    body.light-mode input[type="text"] {
-      color: black;
-      background-color: white;
-    }
+body.light-mode input[type="text"] {
+  color: black;
+  background-color: white;
+}
 
-    body.dark-mode input[type="text"] {
-      color: white;
-      background-color: #333;
-    }
+body.dark-mode input[type="text"] {
+  color: white;
+  background-color: #333;
+}
 
-    button {
-      padding: 10px 15px;
-      background-color: #4285f4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-    }
+button {
+  padding: 10px 15px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
 
-    body.dark-mode button {
-      background-color: #333;
-    }
+body.dark-mode button {
+  background-color: #333;
+}
 
-    button:hover {
-      background-color: #357ae8;
-    }
+button:hover {
+  background-color: #357ae8;
+}
 
-    body.dark-mode button:hover {
-      background-color: #555;
-    }
+body.dark-mode button:hover {
+  background-color: #555;
+}
 
-    .card-container {
-      padding: 20px;
-      border-radius: 8px;
-      background-color: transparent;
-      width: 90%;
-      max-width: 600px;
-      perspective: 1000px;
-      box-sizing: border-box;
-    }
+.card-container {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: transparent;
+  width: 90%;
+  max-width: 600px;
+  perspective: 1000px;
+  box-sizing: border-box;
+}
 
-    .card-container h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
-      transition: color 0.3s;
-    }
+.card-container h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
 
-    body.light-mode .card-container h2 {
-      color: black;
-    }
+body.light-mode .card-container h2 {
+  color: black;
+}
 
-    body.dark-mode .card-container h2 {
-      color: white;
-    }
+body.dark-mode .card-container h2 {
+  color: white;
+}
 
-    .card-container p {
-      line-height: 1.6;
-      font-size: 1rem;
-      transition: color 0.3s;
-    }
+.card-container p {
+  line-height: 1.6;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
 
-    body.light-mode .card-container p {
-      color: black;
-    }
+body.light-mode .card-container p {
+  color: black;
+}
 
-    body.dark-mode .card-container p {
-      color: white;
-    }
+body.dark-mode .card-container p {
+  color: white;
+}
 
-    .card-flip-container {
-      position: relative;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-      cursor: pointer;
-      margin: 20px auto;
-    }
+.card-flip-container {
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  margin: 20px auto;
+}
 
-    .card-flip-container.flipped {
-      transform: rotateY(180deg);
-    }
+.card-flip-container.flipped {
+  transform: rotateY(180deg);
+}
 
-    .card-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .card-face.front {
-      background-color: transparent;
-    }
+.card-face.front {
+  background-color: transparent;
+}
 
-    .card-face.back {
-      background-color: transparent;
-      transform: rotateY(180deg);
-    }
+.card-face.back {
+  background-color: transparent;
+  transform: rotateY(180deg);
+}
 
-    .card-face > div {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+.card-face > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .card-face img {
-      max-width: 100%;
-      max-height: 100%;
-    }
+.card-face img {
+  max-width: 100%;
+  max-height: 100%;
+}
 
-    .theme-switch {
-      background-color: #4285f4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      padding: 8px 12px;
-      font-size: 0.9rem;
-      transition: background-color 0.3s;
-    }
+.theme-switch {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
 
-    body.dark-mode .theme-switch {
-      background-color: #333;
-    }
+body.dark-mode .theme-switch {
+  background-color: #333;
+}
 
-    .theme-switch:hover {
-      background-color: #357ae8;
-    }
+.theme-switch:hover {
+  background-color: #357ae8;
+}
 
-    body.dark-mode .theme-switch:hover {
-      background-color: #555;
-    }
+body.dark-mode .theme-switch:hover {
+  background-color: #555;
+}
 
-    @media (min-width: 768px) {
-      .card-flip-container {
-        width: 300px;
-        height: 300px;
-      }
+@media (min-width: 768px) {
+  .card-flip-container {
+    width: 300px;
+    height: 300px;
+  }
 
-      .card-container h2 {
-        font-size: 2rem;
-      }
+  .card-container h2 {
+    font-size: 2rem;
+  }
 
-      .card-container p {
-        font-size: 1.2rem;
-      }
-    }
+  .card-container p {
+    font-size: 1.2rem;
+  }
+}
