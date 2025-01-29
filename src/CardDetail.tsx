@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import anime from 'animejs';
+import { CardNumberContext } from './App';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -28,6 +29,7 @@ function CardDetail({ theme, toggleTheme }: CardDetailProps) {
   const cardFlipRef = useRef<HTMLDivElement>(null);
   const [isFlipped, setIsFlipped] = useState(false);
   const [cardSize, setCardSize] = useState({ width: 150, height: 150 });
+  const { setCardNumber } = useContext(CardNumberContext) || {};
 
   useEffect(() => {
     const handleResize = () => {
@@ -69,6 +71,9 @@ function CardDetail({ theme, toggleTheme }: CardDetailProps) {
           navigate('/no-results');
         } else if (data) {
           setCard(data);
+          if (setCardNumber) {
+            setCardNumber(cardNumber);
+          }
         } else {
           navigate('/no-results');
         }
@@ -79,7 +84,7 @@ function CardDetail({ theme, toggleTheme }: CardDetailProps) {
     };
 
     fetchCard();
-  }, [cardNumber, navigate]);
+  }, [cardNumber, navigate, setCardNumber]);
 
   useEffect(() => {
     if (card && card.svgPath && svgContainerRef.current) {

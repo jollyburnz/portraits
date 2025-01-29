@@ -1,13 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect, createContext, useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Home from './Home';
 import CardDetail from './CardDetail';
 import NoResults from './NoResults';
 import './index.css';
 import Div100vh from 'react-div-100vh';
 
+interface AppProps {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+}
+
+interface CardNumberContextType {
+  cardNumber: string | undefined;
+  setCardNumber: React.Dispatch<React.SetStateAction<string | undefined>>;
+}
+
+export const CardNumberContext = createContext<CardNumberContextType | undefined>(undefined);
+
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [cardNumber, setCardNumber] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     document.body.classList.remove('light-mode', 'dark-mode');
@@ -22,19 +35,21 @@ function App() {
   return (
     <Div100vh className="app-container">
       <Router>
-        <header className="app-header">
-          <HeaderContent theme={theme} toggleTheme={toggleTheme} />
-        </header>
-        <main className="app-main">
-          <Routes>
-            <Route path="/" element={<Home theme={theme} toggleTheme={toggleTheme} />} />
-            <Route path="/card/:cardNumber" element={<CardDetail theme={theme} toggleTheme={toggleTheme} />} />
-            <Route path="/no-results" element={<NoResults />} />
-          </Routes>
-        </main>
-        <footer className="app-footer">
-          <FooterContent />
-        </footer>
+        <CardNumberContext.Provider value={{ cardNumber, setCardNumber }}>
+          <header className="app-header">
+            <HeaderContent theme={theme} toggleTheme={toggleTheme} />
+          </header>
+          <main className="app-main">
+            <Routes>
+              <Route path="/" element={<Home theme={theme} toggleTheme={toggleTheme} />} />
+              <Route path="/card/:cardNumber" element={<CardDetail theme={theme} toggleTheme={toggleTheme} />} />
+              <Route path="/no-results" element={<NoResults />} />
+            </Routes>
+          </main>
+          <footer className="app-footer">
+            <FooterContent />
+          </footer>
+        </CardNumberContext.Provider>
       </Router>
     </Div100vh>
   );
@@ -84,14 +99,13 @@ function ThemeSwitch({ theme, toggleTheme }: ThemeSwitchProps) {
 
 function FooterContent() {
   const location = useLocation();
-  const navigate = useNavigate();
-  const { cardNumber } = useParams();
+  const { cardNumber: contextCardNumber } = useContext(CardNumberContext) || {};
 
   const handleShare = async () => {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `Portrait ${cardNumber}`,
+          title: `Portrait #${contextCardNumber}`,
           url: window.location.href,
         });
       } catch (error) {
