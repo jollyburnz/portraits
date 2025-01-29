@@ -126,7 +126,7 @@ function FooterContent() {
 
   return (
     <div className="footer-content">
-      <p>&copy; 2024</p>
+      <p>&copy; 2024-2025</p>
       {showShareButton && (
         <button className="share-button" onClick={handleShare}>
           Share
