@@ -68,6 +68,17 @@ function HeaderContent({ theme, toggleTheme }: HeaderContentProps) {
     navigate('/');
   };
 
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (event.key === 'Escape' && location.pathname !== '/') {
+      handleBack();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [location]);
+
   const showBackButton = location.pathname !== '/';
 
   return (

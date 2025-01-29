@@ -16,6 +16,12 @@ function Home({ theme, toggleTheme }: HomeProps) {
     }
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <div>
       <div className="search-container">
@@ -24,6 +30,7 @@ function Home({ theme, toggleTheme }: HomeProps) {
           placeholder="Enter Portrait Number"
           value={cardNumber}
           onChange={(e) => setCardNumber(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
         <button onClick={handleSearch}>Search</button>
       </div>
